@@ -156,6 +156,44 @@ class HomeBody extends StatelessWidget {
                  SizedBox(width: 4,),
                ],
              ),
+             SingleChildScrollView(
+               scrollDirection: Axis.horizontal,
+               physics: const BouncingScrollPhysics(),
+               child: Row(
+                 children: List.generate(
+                   bestSellerList.length,
+                       (index) => Padding(
+                       padding: EdgeInsets.only(
+                         left: index == 0 ? MediaQuery.of(context).size.width * 0.02 : 0, // Add padding to the first item
+                         right: MediaQuery.of(context).size.width * 0.03, // Spacing between items
+                       ),
+                       child: Container(
+                         width: 0.8 *width,
+                         padding: EdgeInsets.all(12),
+                         decoration: BoxDecoration(
+                           color: const Color(0xffF5F5FA),
+                           borderRadius: BorderRadius.circular(12),
+                         ),
+                         child: Row(
+                           children: [
+                             Image(image: AssetImage(bestSellerList[index].imagePath),width: 120,height: 120,)
+                             ,
+                             SizedBox(width: 16,),
+                             Column(
+                               children: [
+                                 Text(bestSellerList[index].title, style: TextStyle(color: Color(0xff010104), fontSize: 16,fontWeight: FontWeight.w500)),
+                                 SizedBox(height: 4,),
+                                 Text(bestSellerList[index].description, style: TextStyle(color: Color(0xff6A6A8B), fontSize: 12))
+                               ],
+                             )
+                           ],
+                         ),
+
+                       )
+                   ),
+                 ),
+               ),
+             ),
            ],
           ),
         ),
@@ -178,3 +216,31 @@ List<String> recommendationsForYouList =[
   "assets/images/Image Placeholder 1.png",
   "assets/images/Image Placeholder 1 (1).png",
 ];
+
+
+List<BestSellerModel> bestSellerList =[
+  BestSellerModel(
+      imagePath:"assets/images/Image Placeholder 2.png" ,
+      title: "Light Mage",
+      description: "Laurie Forest"),
+  BestSellerModel(
+      imagePath:"assets/images/Image Placeholder 2.png" ,
+      title: "Light Mage",
+      description: "Laurie Forest"),
+  BestSellerModel(
+      imagePath:"assets/images/Image Placeholder 2.png" ,
+      title: "Light Mage",
+      description: "Laurie Forest"),
+  BestSellerModel(
+      imagePath:"assets/images/Image Placeholder 2.png" ,
+      title: "Light Mage",
+      description: "Laurie Forest"),
+];
+
+class BestSellerModel{
+  final String imagePath;
+  final String title;
+  final String description;
+
+  BestSellerModel({required this.imagePath, required this.title, required this.description});
+}
